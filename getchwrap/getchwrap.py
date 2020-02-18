@@ -69,12 +69,19 @@ class ProcFilter(object):
 
 def main():
     """Main."""
+    try:
+        from ._version import __version__
+    except:
+        traceback.print_exc()
+        __version__ = "unknown"
+
     parser = argparse.ArgumentParser()
     parser.add_argument("chars",
                         help="a string of chars will be wrap with newlines when typed")
     parser.add_argument("--pattern", "-p",
                         help="enable wrapping only when this pexpect pattern is seen")
     parser.add_argument("program", help="the program and arguments to run", nargs="+")
+    parser.add_argument("--version", action="version", version=__version__)
     args = parser.parse_args()
     proc = ProcFilter(args.program[0],
                       args.program[1:],
