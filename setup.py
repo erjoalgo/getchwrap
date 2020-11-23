@@ -3,7 +3,7 @@ import os
 
 MODULE_NAME = "getchwrap"
 VERSIONFILE = os.path.join(os.path.dirname(__file__), MODULE_NAME, "_version.py")
-execfile(VERSIONFILE)
+exec(open(VERSIONFILE).read())
 
 setup(
     name=MODULE_NAME,

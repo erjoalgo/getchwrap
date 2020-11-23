@@ -41,15 +41,15 @@ class ProcFilter(object):
 
     def input_filter(self, string):
         """If string from user input matches predicate, add a newline."""
-        if (self.input_filter_enabled) and string in self.chars:
-            string += "\n"
+        if (self.input_filter_enabled) and string.decode() in self.chars:
+            string += "\n".encode()
             if self.pattern:
                 self.input_filter_enabled = False
         return string
 
     def output_filter(self, string):
         """If string from subproc. output matches pred., enable input filter."""
-        self.cum += string
+        self.cum += string.decode()
         if self.pattern and self.pattern.search(self.cum):
             self.input_filter_enabled = True
             self.cum = ""
