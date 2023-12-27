@@ -31,8 +31,8 @@ Repository = "https://github.com/erjoalgo/getchwrap"
 "Bug Tracker" = "https://github.com/erjoalgo/getchwrap/issues"
 
 [project.scripts]
-getchwrap = "getchwrap.getchwrap.githost:main"
+getchwrap = "getchwrap.getchwrap:main"
 
 [project.entry-points."githost.githost"]
-getchwrap = "getchwrap.getchwrap.githost:main"
+getchwrap = "getchwrap.getchwrap:main"
 
