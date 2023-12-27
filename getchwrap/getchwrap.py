@@ -69,11 +69,11 @@ class ProcFilter(object):
 
 def main():
     """Main."""
-    try:
-        from ._version import __version__
+    if __name__ == "__main__":
+        try:
+        __version__ = importlib.metadata.version('getchwrap')
     except:
-        traceback.print_exc()
-        __version__ = "unknown"
+        __version__ = f"unknown: {traceback.format_exc()}"
 
     parser = argparse.ArgumentParser()
     parser.add_argument("chars",
