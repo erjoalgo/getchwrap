@@ -70,8 +70,7 @@ class ProcFilter(object):
 
 def main():
     """Main."""
-    if __name__ == "__main__":
-        try:
+    try:
         __version__ = importlib.metadata.version('getchwrap')
     except:
         __version__ = f"unknown: {traceback.format_exc()}"
