@@ -11,6 +11,7 @@ import termios
 import argparse
 import fcntl
 import pexpect
+import traceback
 
 class ProcFilter(object):
     """A subprocess whose input/output is to be filtered."""
