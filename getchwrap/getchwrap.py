@@ -10,8 +10,8 @@ import termios
 
 import argparse
 import fcntl
+import importlib.metadata
 import pexpect
-import traceback
 
 class ProcFilter(object):
     """A subprocess whose input/output is to be filtered."""
@@ -72,8 +72,9 @@ def main():
     """Main."""
     try:
         __version__ = importlib.metadata.version('getchwrap')
-    except:
-        __version__ = f"unknown: {traceback.format_exc()}"
+    except importlib.metadata.PackageNotFoundError:
+        # running from the source tree, not installed
+        __version__ = "unknown"
 
     parser = argparse.ArgumentParser()
     parser.add_argument("chars",
