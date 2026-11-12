@@ -30,7 +30,7 @@ class ProcFilter(object):
         self.decoder = codecs.getincrementaldecoder("utf-8")(errors="replace")
 
     def run(self):
-        """Run the subprocess with filters."""
+        """Run the subprocess with filters. Returns its exit status."""
         rows, columns = os.popen('stty size', 'r').read().split()
         self.proc = pexpect.spawn(self.program, self.args)
         self.proc.setwinsize(int(rows), int(columns))
@@ -43,6 +43,11 @@ class ProcFilter(object):
         signal.signal(signal.SIGWINCH,
                       lambda signal, frame, self=self:
                       self.sigwinch_passthrough(signal, frame))
+        self.proc.close()
+        if self.proc.signalstatus is not None:
+            # killed by a signal: report it the way shells do
+            return 128 + self.proc.signalstatus
+        return self.proc.exitstatus
 
     def input_filter(self, string):
         """If string from user input matches predicate, add a newline."""
@@ -92,7 +97,7 @@ def main():
                       args.program[1:],
                       chars=args.chars,
                       pattern=args.pattern)
-    proc.run()
+    sys.exit(proc.run())
 
 if __name__ == "__main__":
     main()
