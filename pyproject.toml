@@ -18,7 +18,7 @@ maintainers = [
 description = "A subprocess wrapper to ergonomically eliminate redundant typing"
 readme = "README.md"
 license = "GPL-3.0-or-later"
-keywords = ["getchar", "git", "ergonimic"]
+keywords = ["getchar", "git", "ergonomic"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python"
