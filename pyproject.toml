@@ -21,7 +21,14 @@ license = "GPL-3.0-or-later"
 keywords = ["getchar", "git", "ergonomic"]
 classifiers = [
   "Development Status :: 4 - Beta",
-  "Programming Language :: Python"
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Operating System :: POSIX",
+  "Topic :: Terminals",
+  "Topic :: Software Development :: Version Control :: Git",
+  "Topic :: Utilities",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
 ]
 
 [project.urls]
