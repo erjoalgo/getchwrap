@@ -1,6 +1,7 @@
 #!/usr/bin/python
 """A subprocess wrapper to ergonomically enhance tty user input."""
 
+import codecs
 import os
 import re
 import signal
@@ -24,6 +25,9 @@ class ProcFilter(object):
         self.program = program
         self.args = args
         self.cum = ""
+        # Output arrives in chunks that can split a multi-byte character;
+        # an incremental decoder keeps the partial bytes for the next chunk.
+        self.decoder = codecs.getincrementaldecoder("utf-8")(errors="replace")
 
     def run(self):
         """Run the subprocess with filters."""
@@ -50,7 +54,7 @@ class ProcFilter(object):
 
     def output_filter(self, string):
         """If string from subproc. output matches pred., enable input filter."""
-        self.cum += string.decode()
+        self.cum += self.decoder.decode(string)
         if self.pattern and self.pattern.search(self.cum):
             self.input_filter_enabled = True
             self.cum = ""
