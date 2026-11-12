@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 """A subprocess wrapper to ergonomically enhance tty user input."""
 
 import codecs
