@@ -33,6 +33,3 @@ Repository = "https://github.com/erjoalgo/getchwrap"
 [project.scripts]
 getchwrap = "getchwrap.getchwrap:main"
 
-[project.entry-points."githost.githost"]
-getchwrap = "getchwrap.getchwrap:main"
-
