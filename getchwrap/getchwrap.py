@@ -89,7 +89,7 @@ def main():
 
     parser = argparse.ArgumentParser()
     parser.add_argument("chars",
-                        help="a string of chars will be wrap with newlines when typed")
+                        help="characters that are followed by an automatic Enter when typed")
     parser.add_argument("--pattern", "-p",
                         help="enable wrapping only when this pexpect pattern is seen")
     parser.add_argument("program", help="the program and arguments to run", nargs="+")
