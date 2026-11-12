@@ -34,15 +34,17 @@ class ProcFilter(object):
         rows, columns = os.popen('stty size', 'r').read().split()
         self.proc = pexpect.spawn(self.program, self.args)
         self.proc.setwinsize(int(rows), int(columns))
-        self.proc.interact(
-            output_filter=lambda s, self=self: self.output_filter(s),
-            input_filter=lambda s, self=self: self.input_filter(s))
+        # Register the handlers before interact(), which only returns once
+        # the program exits.
         signal.signal(signal.SIGINT,
                       lambda signal, frame, self=self:
                       self.sigint_handler(signal, frame))
         signal.signal(signal.SIGWINCH,
                       lambda signal, frame, self=self:
                       self.sigwinch_passthrough(signal, frame))
+        self.proc.interact(
+            output_filter=lambda s, self=self: self.output_filter(s),
+            input_filter=lambda s, self=self: self.input_filter(s))
         self.proc.close()
         if self.proc.signalstatus is not None:
             # killed by a signal: report it the way shells do
