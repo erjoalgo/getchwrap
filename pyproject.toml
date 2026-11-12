@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "getchwrap"
-version = "2023.12.27.1"
+version = "2026.11.11.0"
 dependencies = [
   "pexpect",
 ]
